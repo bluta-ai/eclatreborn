@@ -1,0 +1,41 @@
+
+<% layout('layout') -%>
+<section class="wrap section card">
+  <h1>我們已收到您的估價申請 ✅</h1>
+  <p>感謝您，<b><%= data.name %></b>。以下是您的提交摘要：</p>
+
+  <div class="grid-2">
+    <div><span>電郵：</span><%= data.email %></div>
+    <% if (data.phone) { %><div><span>電話：</span><%= data.phone %></div><% } %>
+    <div><span>種類：</span><%= data.type %></div>
+    <% if (data.weight) { %><div><span>重量：</span><%= data.weight %> g</div><% } %>
+    <div><span>狀況：</span><%= data.condition %></div>
+    <div><span>尺寸：</span><%= data.size %></div>
+  </div>
+
+  <div class="estimate">
+    <div>
+      <div class="est-label">系統預估回收價</div>
+      <div class="est-value">$<%= data.price %> HKD</div>
+    </div>
+  </div>
+
+  <% if (data.notes) { %>
+    <h3>備註</h3>
+    <p><%= data.notes %></p>
+  <% } %>
+
+  <% if (data.images && data.images.length) { %>
+    <h3>上載相片</h3>
+    <div class="gallery">
+      <% data.images.forEach(img => { %>
+        <figure>
+          <img src="<%= img.url %>" alt="上載相片">
+          <figcaption><%= img.filename %></figcaption>
+        </figure>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <a class="cta" href="/">返回首頁</a>
+</section>
