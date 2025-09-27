@@ -50,17 +50,14 @@ function basePricePerGram(type) {
   };
   return map[type] ?? map['others'];
 }
-
 function conditionMultiplier(c) {
   const map = { 'mint': 1.0, 'good': 0.85, 'fair': 0.65, 'poor': 0.45 };
   return map[c] ?? 0.6;
 }
-
 function sizeBonus(size) {
   const map = { 'xs': 0, 's': 5, 'm': 12, 'l': 25, 'xl': 45 };
   return map[size] ?? 0;
 }
-
 function estimatePrice({ type, weight, condition, size }) {
   const w = Math.max(0, Number(weight) || 0);
   const base = basePricePerGram(type) * w;
@@ -73,7 +70,6 @@ function estimatePrice({ type, weight, condition, size }) {
 app.get('/', (req, res) => {
   res.render('index', { title: 'Éclat Reborn｜高端二手水晶回收與估價' });
 });
-
 app.get('/process', (req, res) => res.redirect('/#how-it-works'));
 
 app.post('/quote',
@@ -99,7 +95,6 @@ app.post('/quote',
     const { name, email, phone, type, weight, condition, size, notes } = req.body;
     const price = estimatePrice({ type, weight, condition, size });
 
-    // Upload buffers to Vercel Blob (public)
     const images = [];
     for (const file of (req.files || [])) {
       const ext = path.extname(file.originalname) || '.' + (mime.extension(file.mimetype) || 'jpg');
@@ -108,7 +103,6 @@ app.post('/quote',
         .slice(0, 40);
       const stamp = Date.now();
       const key = `uploads/${safeBase}-${stamp}${ext}`;
-
       const { url } = await put(key, file.buffer, { access: 'public', contentType: file.mimetype });
       images.push({ filename: key, url });
     }

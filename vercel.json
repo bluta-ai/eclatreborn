@@ -1,7 +1,13 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/public/(.*)", "dest": "/public/$1" },
-    { "src": "/(.*)", "dest": "/api/index.mjs" }
+    {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.mjs"
+    }
   ]
 }

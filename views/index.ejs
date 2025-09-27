@@ -1,11 +1,12 @@
 
-<section class="hero">
-  <div class="container hero-inner">
-    <h1 class="headline">高端二手水晶回收</h1>
-    <p class="subhead">提交相片與資料，<b>即時獲得參考回收價</b>。 我們以精品級工序與透明流程，為每一件水晶找到新歸宿。</p>
-    <div class="hero-cta">
-      <a class="btn-primary" href="#get-offer">開始估價</a>
-      <a class="btn-link" href="#how-it-works">了解流程</a>
+<section class="hero" style="background-image:url('https://images.unsplash.com/photo-1612832021429-72df8333bd3b?auto=format&fit=crop&w=1600&q=80');">
+  <div class="hero-overlay">
+    <div class="container hero-inner">
+      <h1 class="headline">高端二手水晶回收</h1>
+      <p class="subhead">為您的水晶賦予新價值。透明、專業、值得信賴。</p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="#get-offer">開始估價</a>
+      </div>
     </div>
   </div>
 </section>
@@ -13,10 +14,10 @@
 <section id="how-it-works" class="container section">
   <h2 class="h-title">流程</h2>
   <div class="steps">
-    <div class="step"><div class="dot">1</div><div><h3>提交資料</h3><p>上載相片，填寫品類、重量、狀況與尺寸。</p></div></div>
-    <div class="step"><div class="dot">2</div><div><h3>初步報價</h3><p>系統即時估值；專員 1–2 個工作天內聯絡確認。</p></div></div>
-    <div class="step"><div class="dot">3</div><div><h3>專業檢驗</h3><p>放大鏡檢瑕疵、折射/硬度比對，核對證書與配件。</p></div></div>
-    <div class="step"><div class="dot">4</div><div><h3>快速收款</h3><p>轉數快 / 銀行轉帳即時到賬；不成交可原件退回。</p></div></div>
+    <div class="step"><div class="dot">1</div><div><h3>提交資料</h3><p>上載相片與水晶資訊。</p></div></div>
+    <div class="step"><div class="dot">2</div><div><h3>即時估值</h3><p>系統快速計算參考回收價。</p></div></div>
+    <div class="step"><div class="dot">3</div><div><h3>專業檢驗</h3><p>專員精細檢查，確認價值。</p></div></div>
+    <div class="step"><div class="dot">4</div><div><h3>快速收款</h3><p>成交即時付款，安全可靠。</p></div></div>
   </div>
 </section>
 
@@ -25,97 +26,35 @@
     <h2 class="h-title">即時估價</h2>
     <p class="muted">僅供參考，最終以專員檢驗為準。</p>
   </div>
-  <form id="quote-form" action="/quote" method="POST" enctype="multipart/form-data" class="form-grid">
+  <form action="/quote" method="POST" enctype="multipart/form-data" class="form-grid">
     <% if (typeof errors !== 'undefined') { %>
-      <div class="alert">
-        <ul><% errors.forEach(e => { %><li><%= e.msg %></li><% }) %></ul>
-      </div>
+      <div class="alert"><ul><% errors.forEach(e => { %><li><%= e.msg %></li><% }) %></ul></div>
     <% } %>
-
     <div class="grid two">
-      <div>
-        <label>姓名*</label>
-        <input name="name" required>
-      </div>
-      <div>
-        <label>聯絡電郵*</label>
-        <input name="email" type="email" required>
-      </div>
+      <div><label>姓名*</label><input name="name" required></div>
+      <div><label>電郵*</label><input name="email" type="email" required></div>
     </div>
-
     <div class="grid three">
-      <div>
-        <label>水晶種類*</label>
-        <select name="type" id="type" required>
-          <option value="amethyst">紫水晶 Amethyst</option>
-          <option value="rose_quartz">粉晶 Rose Quartz</option>
-          <option value="clear_quartz">白水晶 Clear Quartz</option>
-          <option value="citrine">黃水晶 Citrine</option>
-          <option value="black_onyx">黑瑪瑙 Black Onyx</option>
-          <option value="aquamarine">海藍寶 Aquamarine</option>
-          <option value="jade">玉 Jade</option>
-          <option value="tourmaline">碧璽 Tourmaline</option>
-          <option value="others">其他 Others</option>
-        </select>
-      </div>
-      <div>
-        <label>重量（克）</label>
-        <input name="weight" id="weight" type="number" min="0" step="1" placeholder="如不確定可留空">
-      </div>
-      <div>
-        <label>外觀狀況</label>
-        <select name="condition" id="condition">
-          <option value="mint">近全新</option>
-          <option value="good" selected>良好</option>
-          <option value="fair">一般</option>
-          <option value="poor">明顯損耗</option>
-        </select>
-      </div>
+      <div><label>種類*</label><select name="type" id="type"><option value="amethyst">紫水晶</option><option value="rose_quartz">粉晶</option><option value="clear_quartz">白水晶</option><option value="citrine">黃水晶</option><option value="black_onyx">黑瑪瑙</option><option value="aquamarine">海藍寶</option><option value="jade">玉</option><option value="tourmaline">碧璽</option><option value="others">其他</option></select></div>
+      <div><label>重量(g)</label><input name="weight" id="weight" type="number" min="0"></div>
+      <div><label>狀況</label><select name="condition" id="condition"><option value="mint">近全新</option><option value="good" selected>良好</option><option value="fair">一般</option><option value="poor">損耗</option></select></div>
     </div>
-
     <div class="grid two">
-      <div>
-        <label>尺寸</label>
-        <select name="size" id="size">
-          <option value="xs">迷你</option>
-          <option value="s">小</option>
-          <option value="m" selected>中</option>
-          <option value="l">大</option>
-          <option value="xl">特大</option>
-        </select>
-      </div>
-      <div>
-        <label>電話 / WhatsApp</label>
-        <input name="phone" placeholder="+852 9xxxxxxx">
-      </div>
+      <div><label>尺寸</label><select name="size" id="size"><option value="xs">迷你</option><option value="s">小</option><option value="m" selected>中</option><option value="l">大</option><option value="xl">特大</option></select></div>
+      <div><label>電話</label><input name="phone"></div>
     </div>
-
-    <div>
-      <label>上載相片（最多 5 張，JPG/PNG/WEBP/GIF）</label>
-      <input type="file" name="photos" accept="image/*" multiple>
-    </div>
-
-    <div>
-      <label>備註</label>
-      <textarea name="notes" rows="4" placeholder="例如：購買年份、是否有裂紋/棉絮、配件等"></textarea>
-    </div>
-
+    <div><label>相片</label><input type="file" name="photos" accept="image/*" multiple></div>
+    <div><label>備註</label><textarea name="notes" rows="3"></textarea></div>
     <div class="estimate end">
-      <div>
-        <div class="est-label">即時參考回收價</div>
-        <div class="est-value"><span id="estPrice">$0</span> HKD</div>
-      </div>
-      <button class="btn-primary" type="submit">提交估價申請</button>
+      <div><div class="est-label">即時參考價</div><div class="est-value"><span id="estPrice">$0</span> HKD</div></div>
+      <button class="btn-primary" type="submit">提交</button>
     </div>
   </form>
 </section>
 
 <section id="faqs" class="container section">
   <h2 class="h-title">常見問題</h2>
-  <div class="faq">
-    <details><summary>參考價與最終價會差很多嗎？</summary><p>一般差距不大；若有隱性裂紋、處理色、嚴重磨損等，會影響最終價格。</p></details>
-    <details><summary>沒有磅重怎麼辦？</summary><p>可先選擇尺寸與狀況，我們仍可給出參考價；最終以檢驗為準。</p></details>
-    <details><summary>付款方式？</summary><p>轉數快 / 銀行轉帳即時到賬。不成交可原件退回。</p></details>
-    <details><summary>哪些品類更保值？</summary><p>碧璽、玉、海藍寶等相對保值；普通白水晶、粉晶則以狀況為主。</p></details>
-  </div>
+  <details><summary>估價可靠嗎？</summary><p>系統即時計算，專員會再次檢驗確認。</p></details>
+  <details><summary>付款快嗎？</summary><p>成交後即時轉數快或銀行轉帳。</p></details>
+  <details><summary>不成交會怎樣？</summary><p>不成交可免費原件退回。</p></details>
 </section>

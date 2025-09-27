@@ -33,9 +33,8 @@
     const w = Number(weightEl?.value || 0);
     const cond = condEl?.value || 'good';
     const size = sizeEl?.value || 'm';
-    const base = basePricePerGram(type) * Math.max(0,w);
-    const price = Math.round(base * conditionMultiplier(cond) + sizeBonus(size));
-    out.textContent = isFinite(price) ? `$${Math.max(0,price)}` : '$0';
+    const price = Math.round((basePricePerGram(type) * Math.max(0,w)) * conditionMultiplier(cond) + sizeBonus(size));
+    if(out) out.textContent = isFinite(price) ? `$${Math.max(0,price)}` : '$0';
   }
   ['change','keyup','input'].forEach(evt=>{
     typeEl?.addEventListener(evt, calc);
